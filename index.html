@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Click Event</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+</head>
+
+<body>
+	<header><h1>Code Quiz</h1></header>
+
+	<div id="hud">
+		<div id="hud-progress">
+			<p id="progress-text">Question # </p>
+			<div id="progress-meter">
+				<div id="progress-meter-100"></div>
+			</div>
+		</div>
+		<div id="hud-timer">
+			<h3>Time Left</h3>
+			<p>00:</p>
+		</div>
+		<a href="./hiscores.html" id="hud-hiscore"></a>
+	</div>
+
+	<section id="question"><h2></h2></section>
+
+	<section id="answers">
+		<ul>
+			<li id="choice1" class="answer-button"></li>
+			<li id="choice2" class="answer-button"></li>
+			<li id="choice3" class="answer-button"></li>
+			<li id="choice4" class="answer-button"></li>
+		</ul>
+	</section>
+
+	<script src="./assets/js/script.js"></script>
+</body>
+
+</html>

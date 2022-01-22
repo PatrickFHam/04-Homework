@@ -1,0 +1,212 @@
+@font-face {
+	font-family: alarmclock;
+	src: url(../fonts/alarmclock.woff);
+}
+
+@font-face {
+	font-family: bitwise;
+	src: url(../fonts/bitwise.woff);
+}
+
+@font-face {
+	font-family: computer_7;
+	src: url(../fonts/computer_7.woff);
+}
+
+:root {
+	--bgGreen: #072004;
+	--textGreen: springgreen;
+	--bgButton: #15440e;
+	--bgButtonHover: #1f5217;
+	--alarmred: rgb(175, 0, 0);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bgGreen);
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+	height: 10%;
+	justify-content: center;
+	padding: 30px;
+	font-family: computer_7, Courier, monospace;
+}
+
+h1 {
+	font-size: 300%;
+	font-weight: bold;
+	color: var(--textGreen);
+	font-family: bitwise, Courier, monospace;
+}
+
+h2 {
+	font-size: 180%;
+	color: var(--textGreen);
+	font-family: bitwise, Courier, monospace;
+}
+
+h3 {
+	font-size: 150%;
+	text-align: center;
+	font-family: alarmclock, Courier, monospace;
+	color: var(--alarmred);
+}
+
+li {
+	font-size: 100%;
+	color: var(--textGreen);
+	font-family: bitwise, Courier, monospace;
+}
+
+#hud {
+	display: flex;
+	flex-direction: row;
+	height: 10%;
+	background-color: inherit;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#hud a {
+	display: block;
+}
+
+#hud-progress {
+	display: flex;
+	flex-direction: column;
+	background-color: inherit;
+	width: 50%;
+	justify-content: center;
+}
+
+#progress-text {
+	color: var(--textGreen);
+	font-family: bitwise, Courier, monospace;
+	font-size: 130%;
+}
+
+#progress-meter {
+	justify-content: center;
+	width: 80%;
+	height: 3rem;
+	border: 0.2rem solid var(--textGreen);
+	border-radius: 50px;
+	overflow: hidden;
+}
+
+#progress-meter-100 {
+	height: 100%;
+	background-color: var(--textGreen);
+	width: 0%;
+}
+
+#hud-timer {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	align-items: stretch;
+	justify-content: center;
+	font-family: alarmclock, 'Courier New', Courier, monospace;
+	background-color: black;
+	
+}
+
+#hud-timer p {
+	color: var(--alarmred);
+	margin: 0px 35%;
+	text-align: center;
+	font-size: 135%;
+}
+
+#hud-hiscore {
+	background-color: var(--bgButton);
+	width: 20%;
+	background-image: url(../images/leaderboard.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#hud-hiscore:hover {
+	background-color: grey;
+	background-image: url(../images/leaderboardwithcolors2.png);
+}
+
+#question {
+	height: 15%;
+	padding: 20px 50px;
+	align-content: center;
+}
+
+#answers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 65%;
+	background-color: inherit;
+}
+
+#answers ul {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: space-around;
+	width: 100%;
+	height: 100%;
+}
+
+#answers ul li {
+	display: flex;
+}
+
+.answer-button {
+	height: 22%;
+	align-items: center;
+	justify-content: left;
+	text-indent: 50px;
+	background-color: var(--bgButton);
+	margin: 10px 50px 10px 70px;
+	border-radius: 15px;
+}
+
+.answer-button:hover {
+	background-color: var(--bgButtonHover);
+}
+
+#hiscorers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 65%;
+	background-color: inherit;
+}
+
+#hiscorers ol {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: space-around;
+	width: 100%;
+	height: 100%;
+}
+
+#hiscorers ol li {
+	display: flex;
+}
+
+.answer-button {
+	height: 22%;
+	align-items: center;
+	justify-content: left;
+	text-indent: 50px;
+	background-color: var(--bgButton);
+	margin: 10px 50px 10px 70px;
+	border-radius: 15px;
+}
