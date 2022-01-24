@@ -6,7 +6,7 @@ const option2 = document.getElementById("option2");
 const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
 
-const questionBank = [
+const setBank = [
 	{
 		question: 'This is question 1, and the answer should be number 4.',
 		option1: 'Answer number 1.',
@@ -65,14 +65,19 @@ const questionBank = [
 	}
 ]
 
-var totalQuestions = questionBank.length;
-var currentQuestion = {}
-var currentQuestionNumber = 0
-var completedQuestions = 0
-var randomQuestionOrder = [];
+var totalSets = setBank.length;
+var currentSet = {}
+var currentSetNumber = 0
+var completedSets = 0
+var randomSetOrder = [];
+// var currentSet = questionBank[currentSetNumber];  NOT SURE IF I NEED THIS YET
+
+function reassignCurrentSetContent () {
+	currentSet = setBank[currentSetNumber]
+	return currentSet;
+}
 
 function startCountdown (t) {
-	  // Sets interval in variable
 		var secondsLeft = t;
 		countdown.children[1].textContent = secondsLeft;
 		var timerInterval = setInterval(function() {
@@ -94,17 +99,17 @@ function timeOut (){
 }
 
 function randomizeQuestionOrder () {
-	randomQuestionOrder = questionBank.sort(() => (Math.random() > .5) ? 1 : -1);
-	console.log(randomQuestionOrder);
-	return randomQuestionOrder
+	randomSetOrder = setBank.sort(() => (Math.random() > .5) ? 1 : -1);
+	console.log(randomSetOrder);
+	return randomSetOrder
 }		
 
 function showQuestion(x) {
-	question.children[0].textContent = questionBank[x-1].question;
-	option1.textContent = questionBank[x-1].option1;
-	option2.textContent = questionBank[x-1].option2;
-	option3.textContent = questionBank[x-1].option3;
-	option4.textContent = questionBank[x-1].option4;
+	question.children[0].textContent = setBank[x-1].question;
+	option1.textContent = setBank[x-1].option1;
+	option2.textContent = setBank[x-1].option2;
+	option3.textContent = setBank[x-1].option3;
+	option4.textContent = setBank[x-1].option4;
 }
 
 function clearQuestion () {
@@ -120,10 +125,22 @@ function changeProgMeterPercent(a,b) {
 	progressmeter.style.width = percentFinished;
 }
 
+function queueNextQuestion () {
+	clearQuestion () ;
+	currentSetNumber ++;
+	showQuestion (currentSetNumber);
+	changeProgMeterPercent (currentSetNumber-1,totalSets);
+	return
+}
+
+function checkAnswer () {
+	// currentSetCorrectAnswer = 
+}
+
 function startQuiz (){
 	startCountdown(30);
 	randomizeQuestionOrder();
-	showQuestion(randomQuestionOrder[0]);
+	queueNextQuestion ();
 }
 
 // maybe not use the t,x, ... just make the start button work
