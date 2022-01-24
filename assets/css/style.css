@@ -55,14 +55,22 @@ h2 {
 h3 {
 	font-size: 150%;
 	text-align: center;
-	font-family: alarmclock, Courier, monospace;
-	color: var(--alarmred);
+	font-family: bitwise, Courier, monospace;
 }
 
 li {
 	font-size: 100%;
 	color: var(--textGreen);
 	font-family: bitwise, Courier, monospace;
+}
+
+a {
+	font-size: 100%;
+	color: var(--textGreen);
+}
+
+a:visited {
+	color: var(--textGreen);
 }
 
 #hud {
@@ -76,6 +84,12 @@ li {
 
 #hud a {
 	display: block;
+	color: var(--textGreen);
+}
+
+#hud a:visited {
+	color: inherit;
+	color: var(--textGreen);
 }
 
 #hud-progress {
@@ -113,9 +127,9 @@ li {
 	width: 30%;
 	align-items: stretch;
 	justify-content: center;
-	font-family: alarmclock, 'Courier New', Courier, monospace;
 	background-color: black;
-	
+	font-family: alarmclock, Courier, monospace;
+	color: var(--alarmred);
 }
 
 #hud-timer p {
@@ -132,11 +146,42 @@ li {
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
+
 }
 
 #hud-hiscore:hover {
 	background-color: grey;
 	background-image: url(../images/leaderboardwithcolors2.png);
+}
+
+#hud-hiscore-clr {
+	background-color: var(--bgbutton);
+	width: 40%;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	text-justify: center;
+}
+
+#hud-hiscore-clr h3 {
+	text-align: center;
+	text-justify: center;
+}
+
+#hud-hiscore-clr:hover {
+	background-color: var(--bgButtonHover);
+}
+
+#hud-hiscore-left {
+	background-color: inherit;
+	width: 40%;
+}
+
+#hiscorers {
+	display: flex;
+	flex-direction: column;
+	height: 80%;
+	justify-content: space-evenly;
 }
 
 #question {
@@ -186,7 +231,21 @@ li {
 	align-items: center;
 	height: 65%;
 	background-color: inherit;
+	width: 40%;
+	justify-self: center;
+	align-self: center;
 }
+
+#hiscorers li {
+	align-items: center;
+	justify-content: left;
+	text-indent: 15px;
+	background-color: var(--bgButton);
+	margin: 5px 20px 5px 20px;
+	border-radius: 10px;
+}
+
+/* .scorer {} */
 
 #hiscorers ol {
 	display: flex;

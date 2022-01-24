@@ -5,21 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>High Scores</title>
+  <title>Out of Time ... :( </title>
   <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 
 <body>
-	<header><h1>High Scores</h1></header>
+	<header><h1>Out of Time</h1></header>
 
 	<div id="hud">
-		<div id="hud-hiscore-left"></div>
+		<div id="hud-progress">
+			<p id="progress-text">Question # </p>
+			<div id="progress-meter">
+				<div id="progress-meter-100"></div>
+			</div>
+		</div>
+		<div id="hud-timer">
+			<h3>Time Left</h3>
+			<p>00:30</p>
+		</div>
 		<a href="./hiscores.html" id="hud-hiscore"></a>
-		<a href="" id="hud-hiscore-clr">
-			<h3>Clear Scores</h3>
-		</a>
 	</div>
+
+	<section id="question"><h2>This is where the question will go.  Which of the below is the correct answer?</h2></section>
 
 	<section id="hiscorers">
 		<ol>
