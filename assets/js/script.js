@@ -132,7 +132,6 @@ function reassignCurrentSetContent () {
 	return currentSet;
 }
 
-
 function changeProgMeterPercent(a,b) {
 	percentFinished = Math.round((a / b) * 100) + '%';
 	progressmeterEl.style.width = percentFinished;
@@ -156,7 +155,6 @@ function runApp (t) {
 	
 	function timeOut (){
 		clearInterval(timerInterval);
-		console.log("timer is done!");
 		outOfTimeSeq();
 }
 
@@ -216,7 +214,6 @@ function choseCorrectly () {
 function choseWrongly () {
 	if (penaltySeconds >= secondsLeft) {
 		tooManyWrongs();
-		console.log("TOO MANY WRONGS!");
 	}
 	else {
 		secondsLeft -= penaltySeconds;
@@ -228,6 +225,3 @@ function choseWrongly () {
 		}
 	}
 }
-
-
-// BELOW ARE HI-SCORE FUNCTIONS

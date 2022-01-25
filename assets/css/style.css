@@ -177,7 +177,7 @@ a:visited {
 	width: 40%;
 }
 
-#hiscorers {
+#scores-box {
 	display: flex;
 	flex-direction: column;
 	height: 80%;
@@ -225,7 +225,7 @@ a:visited {
 	background-color: var(--bgButtonHover);
 }
 
-#hiscorers {
+#scores-box {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -236,7 +236,7 @@ a:visited {
 	align-self: center;
 }
 
-#hiscorers li {
+#scores-box li {
 	align-items: center;
 	justify-content: left;
 	text-indent: 15px;
@@ -245,9 +245,7 @@ a:visited {
 	border-radius: 10px;
 }
 
-/* .scorer {} */
-
-#hiscorers ol {
+#scores-box ol {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -256,7 +254,7 @@ a:visited {
 	height: 100%;
 }
 
-#hiscorers ol li {
+#scores-box ol li {
 	display: flex;
 }
 
