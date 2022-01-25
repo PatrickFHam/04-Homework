@@ -1,67 +1,70 @@
-const countdown = document.getElementById("hud-timer");
-const progressmeter = document.getElementById("progress-meter-100");
-const question = document.getElementById("question");
-const option1 = document.getElementById("option1");
-const option2 = document.getElementById("option2");
-const option3 = document.getElementById("option3");
-const option4 = document.getElementById("option4");
+const countdownEl = document.getElementById("hud-timer");
+const progressmeterEl = document.getElementById("progress-meter-100");
+const currentquestionEl = document.getElementById("current-q-num");
+const totalquestionEl = document.getElementById("total-q-num");
+const questionEl = document.getElementById("question");
+const option1El = document.getElementById("option1");
+const option2El = document.getElementById("option2");
+const option3El = document.getElementById("option3");
+const option4El = document.getElementById("option4");
+const optionsEl = document.querySelectorAll("answer-button");
 
 const setBank = [
 	{
-		question: 'This is question 1, and the answer should be number 4.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.', 
-		answer: 4,
-	},
-	{
-		question: 'This is question 2, and the answer should be number 3.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
-		answer: 3,
-	},
-	{
-		question: 'This is question 3, and the answer should be number 2.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
-		answer: 2,
-	},
-	{
-		question: 'This is question 4, and the answer should be number 1.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
+		question: 'The correct answer should be APPLES.',
+		option1: 'Apples',
+		option2: 'Bananas',
+		option3: 'Cucumbers',
+		option4: 'Delicious', 
 		answer: 1,
 	},
 	{
-		question: 'This is question 5, and the answer should be number 2.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
+		question: 'The correct answer should be HAM.',
+		option1: 'Eggs.',
+		option2: 'Flour',
+		option3: 'Grains',
+		option4: 'Ham',
+		answer: 4,
+	},
+	{
+		question: 'The correct answer should be JELLY',
+		option1: 'Izzy',
+		option2: 'Jelly',
+		option3: 'Ketchup',
+		option4: 'Limes',
 		answer: 2,
 	},
 	{
-		question: 'This is question 6, and the answer should be number 3.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
+		question: 'The correct answer should be ORANGES.',
+		option1: 'Mayo',
+		option2: 'Nectarines',
+		option3: 'Oranges',
+		option4: 'Peppers',
 		answer: 3,
 	},
 	{
-		question: 'This is question 7, and the answer should be number 4.',
-		option1: 'Answer number 1.',
-		option2: 'Answer number 2.',
-		option3: 'Answer number 3.',
-		option4: 'Answer number 4.',
-		answer: 4,
+		question: 'The correct answer should be QUIK.',
+		option1: 'Quik',
+		option2: 'Rice',
+		option3: 'Saltines',
+		option4: 'Taffy',
+		answer: 1,
+	},
+	{
+		question: 'The correct answer should be WONDERBREAD.',
+		option1: 'Ugly Fruit',
+		option2: 'Velveeta',
+		option3: 'Wonderbread',
+		option4: 'Xyzal',
+		answer: 3,
+	},
+	{
+		question: 'The correct answer should be ZZ-Nytol',
+		option1: 'Yams',
+		option2: 'ZZ-Nytol',
+		option3: 'One a Day',
+		option4: 'Tweezers',
+		answer: 2,
 	}
 ]
 
@@ -69,90 +72,162 @@ var totalSets = setBank.length;
 var currentSet = {}
 var currentSetNumber = 0
 var completedSets = 0
-var randomSetOrder = [];
-// var currentSet = questionBank[currentSetNumber];  NOT SURE IF I NEED THIS YET
+var randomizedSetBank = [];
+var currentCorrectAnswer = currentSet.answer;
+var secondsLeft
+var timerInterval
+var penaltySeconds = 15
+currentquestionEl.innerHTML = 1
+totalquestionEl.innerHTML = totalSets;
 
-function reassignCurrentSetContent () {
-	currentSet = setBank[currentSetNumber]
-	return currentSet;
+function test (s) {
+	randomizeSetOrder();
+	currentSetNumber = 0;
+	queueFirstSet();
+	queueNextSet();
+	runApp(s);
 }
 
-function startCountdown (t) {
-		var secondsLeft = t;
-		countdown.children[1].textContent = secondsLeft;
-		var timerInterval = setInterval(function() {
-			secondsLeft--;
-			countdown.children[1].textContent = secondsLeft;
-	
-			if(secondsLeft === 0) {
-				clearInterval(timerInterval);
-				// Show "timeout" message.
-				console.log("timer is done!");
-				timeOut ();
-			}
-	
-		}, 1000);
-}
+function randomizeSetOrder () {
+	randomizedSetBank = setBank.sort(() => (Math.random() > .5) ? 1 : -1);
+	console.log(randomizedSetBank);
+	return randomizedSetBank;
+}	
 
-function timeOut (){
-		window.location.assign("./outoftime.html");
-}
-
-function randomizeQuestionOrder () {
-	randomSetOrder = setBank.sort(() => (Math.random() > .5) ? 1 : -1);
-	console.log(randomSetOrder);
-	return randomSetOrder
-}		
-
-function showQuestion(x) {
-	question.children[0].textContent = setBank[x-1].question;
-	option1.textContent = setBank[x-1].option1;
-	option2.textContent = setBank[x-1].option2;
-	option3.textContent = setBank[x-1].option3;
-	option4.textContent = setBank[x-1].option4;
-}
-
-function clearQuestion () {
-	question.children[0].textContent = '';
-	option1.textContent = '';
-	option2.textContent = '';
-	option3.textContent = '';
-	option4.textContent = '';
-}
-
-function changeProgMeterPercent(a,b) {
-	percentFinished = Math.round((a / b) * 100) + '%';
-	progressmeter.style.width = percentFinished;
-}
-
-function queueNextQuestion () {
-	clearQuestion () ;
-	currentSetNumber ++;
-	showQuestion (currentSetNumber);
+function queueFirstSet () {
+	clearCurrentSet () ;
+	reassignCurrentSetContent ();
 	changeProgMeterPercent (currentSetNumber-1,totalSets);
+	showCurrentSet (currentSetNumber);
 	return
 }
 
-function checkAnswer () {
-	// currentSetCorrectAnswer = 
+function queueNextSet () {
+	clearCurrentSet () ;
+	reassignCurrentSetContent ();
+	changeProgMeterPercent ((currentSetNumber),totalSets);
+	showCurrentSet (currentSetNumber);
+	return
 }
 
-function startQuiz (){
-	startCountdown(30);
-	randomizeQuestionOrder();
-	queueNextQuestion ();
+function clearCurrentSet () {
+	questionEl.children[0].textContent = '';
+	option1El.textContent = '';
+	option2El.textContent = '';
+	option3El.textContent = '';
+	option4El.textContent = '';
 }
 
-// maybe not use the t,x, ... just make the start button work
+function showCurrentSet(x) {
+	questionEl.children[0].textContent = randomizedSetBank[x].question;
+	option1El.textContent = randomizedSetBank[x].option1;
+	option2El.textContent = randomizedSetBank[x].option2;
+	option3El.textContent = randomizedSetBank[x].option3;
+	option4El.textContent = randomizedSetBank[x].option4;
+}
 
-// START BUTTON
-// start countdown
-// randomize the question set
-// show the active question 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+function reassignCurrentSetContent () {
+	currentSet = randomizedSetBank[currentSetNumber];
+	currentCorrectAnswer = currentSet.answer;
+	return currentSet;
+}
+
+
+function changeProgMeterPercent(a,b) {
+	percentFinished = Math.round((a / b) * 100) + '%';
+	progressmeterEl.style.width = percentFinished;
+	currentquestionEl.textContent = (currentSetNumber +1);
+	totalquestionEl.textContent = totalSets;
+}
+
+function runApp (t) {
+	secondsLeft = t;
+	countdownEl.children[1].textContent = secondsLeft;
+	timerInterval = setInterval(timer, 1000);	
+	}
+	
+	function timer() {
+		secondsLeft--;
+		countdownEl.children[1].textContent = secondsLeft;
+		if(secondsLeft <= 0) {
+			timeOut ();
+		}
+	}
+	
+	function timeOut (){
+		clearInterval(timerInterval);
+		console.log("timer is done!");
+		outOfTimeSeq();
+}
+
+function outOfTimeSeq () {
+	window.location.assign("./outoftime.html")
+}
+
+function tooManyWrongs () {
+	window.location.assign("./toomanywrongs.html")
+}
+
+function endAndSaveScore() {
+	localStorage.setItem('score', secondsLeft);
+	window.location.assign("./hiscores.html");
+}
+
+function chooseOption (o) {
+	console.log(o)
+	if (currentCorrectAnswer === o) {
+		console.log('yep');
+		choseCorrectly();}
+		else {
+		console.log('nope');
+		choseWrongly();}
+}
+
+option1El.onclick = function() {
+	console.log("you pressed option 1");
+	chooseOption(1);
+};
+
+option2El.onclick = function() {
+	console.log("you pressed option 2");
+	chooseOption(2);
+}	
+
+option3El.onclick = function() {
+	console.log("you pressed option 2");
+	chooseOption(3);
+}	
+
+option4El.onclick = function() {
+	console.log("you pressed option 2");
+	chooseOption(4);
+}
+
+function choseCorrectly () {
+	currentSetNumber ++;
+	if (currentSetNumber < totalSets) {
+		queueNextSet();
+	}
+	else {
+		changeProgMeterPercent ((currentSetNumber),totalSets);
+		endAndSaveScore()};
+}
+
+function choseWrongly () {
+	if (penaltySeconds >= secondsLeft) {
+		tooManyWrongs();
+		console.log("TOO MANY WRONGS!");
+	}
+	else {
+		secondsLeft -= penaltySeconds;
+		if (currentSetNumber <= totalSets) {
+			currentSetNumber ++;
+			queueNextSet();
+		} else {
+			tooManyWrongs();
+		}
+	}
+}
+
+
+// BELOW ARE HI-SCORE FUNCTIONS
