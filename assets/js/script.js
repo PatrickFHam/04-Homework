@@ -20,19 +20,19 @@ const optionsEl = document.querySelectorAll("answer-button");
 // so you can add or take away questions,and the quiz still fully-functions.
 const setBank = [
 	{
-		question: 'SQL is short for ...',
-		option1: 'Structured Query Language',
-		option2: 'Stop Quieting Lithuanians',
-		option3: 'South Qatar Limousines',
-		option4: 'Simple Query Linguistics', 
+		question: 'Which is NOT a JavaScript data-type?',
+		option1: 'parent',
+		option2: 'number',
+		option3: 'string',
+		option4: 'boolean', 
 		answer: 1,
 	},
 	{
-		question: 'What duo is known for the first "Analytical Engine"?',
-		option1: 'Wilbur and Orville',
-		option2: 'Edison and Watson',
-		option3: 'Abbot and Costello',
-		option4: 'Lovelace and Babbage',
+		question: 'Which of these is NOT a JavaScript operator?',
+		option1: 'not',
+		option2: 'or',
+		option3: 'and',
+		option4: 'approximate-to',
 		answer: 4,
 	},
 	{
@@ -52,11 +52,11 @@ const setBank = [
 		answer: 3,
 	},
 	{
-		question: 'The first computer bug was in 1947.  Which is true?',
-		option1: 'It was an actual bug.',
-		option2: 'It was a comparison to the noises bugs make.',
-		option3: 'It cause a physical meltdown of the hardware.',
-		option4: 'It brought down an entire government bureau.',
+		question: 'Which is NOT a browser popup?',
+		option1: 'explain',
+		option2: 'alert',
+		option3: 'prompt',
+		option4: 'confirm',
 		answer: 1,
 	},
 	{
@@ -68,11 +68,11 @@ const setBank = [
 		answer: 3,
 	},
 	{
-		question: 'What is a common way we see a Turing Test?',
-		option1: 'abacus',
-		option2: 'a CAPTCHA on a web site',
-		option3: 'advertisement close-box',
-		option4: 'two-factor authentication',
+		question: 'The DOM is best-thought-of as a _____ ?',
+		option1: 'list',
+		option2: 'tree',
+		option3: 'array',
+		option4: 'Venn-Diagram',
 		answer: 2,
 	}
 ]
