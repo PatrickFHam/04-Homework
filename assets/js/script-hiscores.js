@@ -1,3 +1,4 @@
+// These link the HTML elements to the script.
 var scoreBoxEl = document.getElementById("scoresBox");
 var hiScoreLineEl = document.getElementsByClassName("hiscoreline");
 var hiScorer1El = document.getElementById("hiscorer1");
@@ -23,11 +24,14 @@ var resetBtnEl = document.getElementById("clear-hiscores");
 var startResetBtnEl = document.getElementById("start-reset-btn");
 var stopBtnEl = document.getElementById("stop-btn");
 
+// These link to the Local Storage.
 var mostRecentInitials = localStorage.getItem("lsMostRecentInitials");
 var mostRecentScore = localStorage.getItem("lsMostRecentScore");
 
+// This is the 'working' pair of initials and scores... parsed to an array here.
 var storedHighScores = JSON.parse(localStorage.getItem("storedHighScores")) || [];
 
+// Players initials are pulled from the Local Storage, pushed to a working object, sorted by score, reduced down to 5 entries, stringified and stored for later, and parsed to be used now.
 function saveHighScore () {
   const score = {
     initials: mostRecentInitials,
@@ -40,6 +44,7 @@ function saveHighScore () {
   storedHighScores = JSON.parse(localStorage.storedHighScores);
 };
 
+// This is to make sure the program doesn't freak out looking for things that don't exist.
 function ensureNoBlankEntries () {
   if (storedHighScores[0] == null) {
     initials1El.textContent = ' ';
@@ -63,6 +68,7 @@ function ensureNoBlankEntries () {
   }
 };
 
+// Checks to see if it can pull values first, then 'prints' the new text to the hi-scorer lines.
 function printAllInitialsAndScores () {
   if (storedHighScores[0] != null) {
     initials1El.textContent = storedHighScores[0].initials;
@@ -86,12 +92,13 @@ function printAllInitialsAndScores () {
   };
 };
 
-
+// Without this, the most recent score and initials would be added to the list, every time the page is reloaded.
 function clearMostRecent () {
   localStorage.removeItem("lsMostRecentInitials");
   localStorage.removeItem("lsMostRecentScore");
 }
 
+// When the clear button is pressed, this re-assigns the text to empty.
 function clearScorerLines () {
   initials1El.textContent = ' ';
   score1El.textContent = ' ';
@@ -105,6 +112,7 @@ function clearScorerLines () {
   score5El.textContent = ' ';
 }
 
+// All the click events are listed here.
 resetBtnEl.addEventListener("click", function resetHighScores() {
   localStorage.removeItem("storedHighScores");
   clearScorerLines();
@@ -132,6 +140,7 @@ startResetBtnEl.onclick = function () {
   window.location.assign("./quizrun.html");
 }
 
+// The main function's sequence is here.
 function runHiscorePage () {
   ensureNoBlankEntries();
   saveHighScore();
@@ -139,4 +148,5 @@ function runHiscorePage () {
   clearMostRecent();
 }
 
+// This runs upon page-load.
 runHiscorePage();

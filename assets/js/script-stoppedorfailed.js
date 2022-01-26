@@ -1,11 +1,14 @@
+// References the HTML Elements and links them to the JS.
 const seeHiScoresEl = document.getElementById("see-hiscores");
 const resetBtnEl = document.getElementById("clear-hiscores");
 const startResetBtnEl = document.getElementById("start-reset-btn");
 const stopBtnEl = document.getElementById("stop-btn");
 const readyToTryAgainEl = document.getElementById("option1");
 
+
 function resetHighScores () {
-  localStorage.clear();
+  localStorage.removeItem("storedHighScores");
+  clearScorerLines();
 }
 
 function goToHighScoresPage () {

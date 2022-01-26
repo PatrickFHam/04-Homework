@@ -1,3 +1,4 @@
+// These link the HTML elements to the script.
 const progressTextEl = document.getElementById("progress-text");
 const countdownEl = document.getElementById("hud-timer");
 const progressmeterEl = document.getElementById("progress-meter-100");
@@ -15,65 +16,68 @@ const option3El = document.getElementById("option3");
 const option4El = document.getElementById("option4");
 const optionsEl = document.querySelectorAll("answer-button");
 
+// Question Bank ... THIS IS SCALABLE
+// so you can add or take away questions,and the quiz still fully-functions.
 const setBank = [
 	{
-		question: 'The correct answer should be APPLES.',
-		option1: 'Apples',
-		option2: 'Bananas',
-		option3: 'Cucumbers',
-		option4: 'Delicious', 
+		question: 'SQL is short for ...',
+		option1: 'Structured Query Language',
+		option2: 'Stop Quieting Lithuanians',
+		option3: 'South Qatar Limousines',
+		option4: 'Simple Query Linguistics', 
 		answer: 1,
 	},
 	{
-		question: 'The correct answer should be HAM.',
-		option1: 'Eggs.',
-		option2: 'Flour',
-		option3: 'Grains',
-		option4: 'Ham',
+		question: 'What duo is known for the first "Analytical Engine"?',
+		option1: 'Wilbur and Orville',
+		option2: 'Edison and Watson',
+		option3: 'Abbot and Costello',
+		option4: 'Lovelace and Babbage',
 		answer: 4,
 	},
 	{
-		question: 'The correct answer should be JELLY',
-		option1: 'Izzy',
-		option2: 'Jelly',
-		option3: 'Ketchup',
-		option4: 'Limes',
+		question: 'Javascript was invented in what year?',
+		option1: '1985',
+		option2: '1995',
+		option3: '1989',
+		option4: '1999',
 		answer: 2,
 	},
 	{
-		question: 'The correct answer should be ORANGES.',
-		option1: 'Mayo',
-		option2: 'Nectarines',
-		option3: 'Oranges',
-		option4: 'Peppers',
+		question: 'In Javascript, when can you use the semicolon?',
+		option1: 'as a wildcard',
+		option2: "never, it's banned from JS",
+		option3: 'the end and beginning of lines',
+		option4: "anytime, it's an invisible character",
 		answer: 3,
 	},
 	{
-		question: 'The correct answer should be QUIK.',
-		option1: 'Quik',
-		option2: 'Rice',
-		option3: 'Saltines',
-		option4: 'Taffy',
+		question: 'The first computer bug was in 1947.  Which is true?',
+		option1: 'It was an actual bug.',
+		option2: 'It was a comparison to the noises bugs make.',
+		option3: 'It cause a physical meltdown of the hardware.',
+		option4: 'It brought down an entire government bureau.',
 		answer: 1,
 	},
 	{
-		question: 'The correct answer should be WONDERBREAD.',
-		option1: 'Ugly Fruit',
-		option2: 'Velveeta',
-		option3: 'Wonderbread',
-		option4: 'Xyzal',
+		question: 'To have the same instructions run multiple times, which should you use?',
+		option1: 'a tape recorder',
+		option2: 'a repeater',
+		option3: 'a "for-loop"',
+		option4: 'a key logger',
 		answer: 3,
 	},
 	{
-		question: 'The correct answer should be ZZ-Nytol',
-		option1: 'Yams',
-		option2: 'ZZ-Nytol',
-		option3: 'One a Day',
-		option4: 'Tweezers',
+		question: 'What is a common way we see a Turing Test?',
+		option1: 'abacus',
+		option2: 'a CAPTCHA on a web site',
+		option3: 'advertisement close-box',
+		option4: 'two-factor authentication',
 		answer: 2,
 	}
 ]
 
+// Varaiables set to be called on by multiple other functions below.
 var totalSets = setBank.length;
 var currentSet = {}
 var currentSetNumber = 0
@@ -87,7 +91,8 @@ currentquestionEl.innerHTML = 1
 totalquestionEl.innerHTML = totalSets;
 var initials;
 
-function test (s) {
+// Chronologically, this is the first function to "fire".
+function runQuiz (s) {
 	randomizeSetOrder();
 	currentSetNumber = 0;
 	queueFirstSet();
@@ -95,12 +100,14 @@ function test (s) {
 	startTimer(s);
 }
 
+// This re-orders the setBank questions.
 function randomizeSetOrder () {
 	randomizedSetBank = setBank.sort(() => (Math.random() > .5) ? 1 : -1);
 	console.log(randomizedSetBank);
 	return randomizedSetBank;
 }	
 
+// Slightly different than the other advance, due to the progress-meter.
 function queueFirstSet () {
 	clearCurrentSet () ;
 	reassignCurrentSetContent ();
@@ -109,6 +116,7 @@ function queueFirstSet () {
 	return
 }
 
+// How all the other questions advance through the series.
 function queueNextSet () {
 	clearCurrentSet () ;
 	reassignCurrentSetContent ();
@@ -117,6 +125,7 @@ function queueNextSet () {
 	return
 }
 
+// Resets the displayed text.
 function clearCurrentSet () {
 	questionEl.children[0].textContent = '';
 	option1El.textContent = '';
@@ -125,6 +134,7 @@ function clearCurrentSet () {
 	option4El.textContent = '';
 }
 
+// Shows a specific question, designated by the 'current set' as 'x'.
 function showCurrentSet(x) {
 	questionEl.children[0].textContent = randomizedSetBank[x].question;
 	option1El.textContent = randomizedSetBank[x].option1;
@@ -133,12 +143,14 @@ function showCurrentSet(x) {
 	option4El.textContent = randomizedSetBank[x].option4;
 }
 
+// Swaps-out the question and answers for a new set.
 function reassignCurrentSetContent () {
 	currentSet = randomizedSetBank[currentSetNumber];
 	currentCorrectAnswer = currentSet.answer;
 	return currentSet;
 }
 
+// Advances the progress meter, based on what question you're on vs how many total questions there are.
 function changeProgMeterPercent(a,b) {
 	percentFinished = Math.round((a / b) * 100) + '%';
 	progressmeterEl.style.width = percentFinished;
@@ -146,6 +158,7 @@ function changeProgMeterPercent(a,b) {
 	totalquestionEl.textContent = totalSets;
 }
 
+// All the timer magic is here.  Also has within it, the "out of time" trigger.
 function startTimer (t) {
 	secondsLeft = t;
 	countdownEl.children[1].textContent = secondsLeft;
@@ -165,14 +178,17 @@ function startTimer (t) {
 		outOfTimeSeq();
 }
 
+// Simply takes you to a page that says you ran out of time.
 function outOfTimeSeq () {
 	window.location.assign("./outoftime.html")
 }
 
+// Takes you to a different page, if the penalty is greater than the number of seconds remaining.
 function tooManyWrongs () {
 	window.location.assign("./toomanywrongs.html")
 }
 
+// If all the questions are answered, this is triggered, stores the score (secondsLeft) and stores the player's initials.
 function endAndSaveScore() {
 	initials = window.prompt("Nice job! Type your initials!", "Your Initials Here");
 	localStorage.setItem("lsMostRecentScore", secondsLeft);
@@ -180,6 +196,7 @@ function endAndSaveScore() {
 	window.location.assign("./hiscores.html");
 }
 
+// Compares the chosen option with the correct answer.  Fires a function for each, right or wrong.
 function chooseOption (o) {
 	console.log(o)
 	if (currentCorrectAnswer === o) {
@@ -190,6 +207,7 @@ function chooseOption (o) {
 		choseWrongly();}
 };
 
+// Click listeners for the buttons.
 option1El.onclick = function() {
 	console.log("you pressed option 1");
 	chooseOption(1);
@@ -210,27 +228,35 @@ option4El.onclick = function() {
 	chooseOption(4);
 };
 
+// More click-listeners for control buttons in the "hud".
 beginTimerEl.addEventListener("click", userRestart);
 interruptTimerEl.addEventListener("click", userStopped);
 seeHiscoresEl.addEventListener("click", seeHighScores);
 clearHiscoresEl.addEventListener("click", resetHighScores);
 
+// starts the quiz from the top, but does re-order the questions
 function userRestart () {
 	window.location.reload();
 };
 
+// ...for when the user chooses to end the quiz
 function userStopped () {
 	window.location.assign("./userstopped.html");
 };
 
+// This takes the player to the High Scores page.
 function seeHighScores () {
 	window.location.assign("./hiscores.html");
 }
 
+// Clears high-scores.
 function resetHighScores () {
-	localStorage.clear();
+	localStorage.removeItem("storedHighScores");
+  clearScorerLines();
 }
 
+// This is when the player chooses correctly.
+// It adds to the question number, queues the next one, or ends the quiz.'
 function choseCorrectly () {
 	currentSetNumber ++;
 	if (currentSetNumber < totalSets) {
@@ -241,7 +267,9 @@ function choseCorrectly () {
 		endAndSaveScore()};
 };
 
-
+// This is when the player chooses an incorrect answer.
+// This will either (1) subtract seconds from the time (less score),
+// or (2) fire the end-sequence if too many are wrong.
 function choseWrongly () {
 	if (penaltySeconds >= secondsLeft) {
 		tooManyWrongs();
@@ -257,4 +285,5 @@ function choseWrongly () {
 	};
 };
 
-test(60);
+// This is the master-app, that fires as soon as the page is loaded.
+runQuiz(60);

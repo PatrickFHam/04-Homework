@@ -12,11 +12,20 @@
   font-size: 200%;
 }
 
+.answer-button {
+  /* transition: ease-in-out;
+  transition: 1s; */
+}
+
+.answer-button:hover {
+  transition: 1s ease;
+}
+
 #option1 {
   background-color: var(--bgButton);
   /* background-image: url(../images/scanlines.jpg); */
   transition:ease-in;
-  transition: 0.5s;
+  transition: 1s;
 }
 
 #option1:hover {
