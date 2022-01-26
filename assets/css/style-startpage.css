@@ -27,3 +27,7 @@
 #option2, #option3, #option4 {
   background-color: var(--bgGreen);
 }
+
+#hud-progress {
+  opacity: 10%;
+}

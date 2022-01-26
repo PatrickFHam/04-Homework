@@ -175,7 +175,8 @@ function tooManyWrongs () {
 
 function endAndSaveScore() {
 	initials = window.prompt("Nice job! Type your initials!", "Your Initials Here");
-	localStorage.setItem(initials, secondsLeft);
+	localStorage.setItem("lsMostRecentScore", secondsLeft);
+	localStorage.setItem("lsMostRecentInitials", initials);
 	window.location.assign("./hiscores.html");
 }
 
