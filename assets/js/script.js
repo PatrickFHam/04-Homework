@@ -1,5 +1,11 @@
+const progressTextEl = document.getElementById("progress-text");
 const countdownEl = document.getElementById("hud-timer");
 const progressmeterEl = document.getElementById("progress-meter-100");
+const startQuizEl = document.getElementById("start-quiz-btn");
+const beginTimerEl = document.getElementById("start-reset-btn");
+const interruptTimerEl = document.getElementById("stop-btn");
+const seeHiscoresEl = document.getElementById("see-hiscores");
+const clearHiscoresEl = document.getElementById("clear-hiscores");
 const currentquestionEl = document.getElementById("current-q-num");
 const totalquestionEl = document.getElementById("total-q-num");
 const questionEl = document.getElementById("question");
@@ -79,13 +85,14 @@ var timerInterval
 var penaltySeconds = 15
 currentquestionEl.innerHTML = 1
 totalquestionEl.innerHTML = totalSets;
+var initials;
 
 function test (s) {
 	randomizeSetOrder();
 	currentSetNumber = 0;
 	queueFirstSet();
 	queueNextSet();
-	runApp(s);
+	startTimer(s);
 }
 
 function randomizeSetOrder () {
@@ -139,7 +146,7 @@ function changeProgMeterPercent(a,b) {
 	totalquestionEl.textContent = totalSets;
 }
 
-function runApp (t) {
+function startTimer (t) {
 	secondsLeft = t;
 	countdownEl.children[1].textContent = secondsLeft;
 	timerInterval = setInterval(timer, 1000);	
@@ -167,7 +174,8 @@ function tooManyWrongs () {
 }
 
 function endAndSaveScore() {
-	localStorage.setItem('score', secondsLeft);
+	initials = window.prompt("Nice job! Type your initials!", "Your Initials Here");
+	localStorage.setItem(initials, secondsLeft);
 	window.location.assign("./hiscores.html");
 }
 
@@ -179,7 +187,7 @@ function chooseOption (o) {
 		else {
 		console.log('nope');
 		choseWrongly();}
-}
+};
 
 option1El.onclick = function() {
 	console.log("you pressed option 1");
@@ -189,16 +197,37 @@ option1El.onclick = function() {
 option2El.onclick = function() {
 	console.log("you pressed option 2");
 	chooseOption(2);
-}	
+};
 
 option3El.onclick = function() {
 	console.log("you pressed option 2");
 	chooseOption(3);
-}	
+};
 
 option4El.onclick = function() {
 	console.log("you pressed option 2");
 	chooseOption(4);
+};
+
+beginTimerEl.addEventListener("click", userRestart);
+interruptTimerEl.addEventListener("click", userStopped);
+seeHiscoresEl.addEventListener("click", seeHighScores);
+clearHiscoresEl.addEventListener("click", resetHighScores);
+
+function userRestart () {
+	window.location.reload();
+};
+
+function userStopped () {
+	window.location.assign("./userstopped.html");
+};
+
+function seeHighScores () {
+	window.location.assign("./hiscores.html");
+}
+
+function resetHighScores () {
+	localStorage.clear();
 }
 
 function choseCorrectly () {
@@ -209,7 +238,8 @@ function choseCorrectly () {
 	else {
 		changeProgMeterPercent ((currentSetNumber),totalSets);
 		endAndSaveScore()};
-}
+};
+
 
 function choseWrongly () {
 	if (penaltySeconds >= secondsLeft) {
@@ -223,5 +253,7 @@ function choseWrongly () {
 		} else {
 			tooManyWrongs();
 		}
-	}
-}
+	};
+};
+
+test(60);

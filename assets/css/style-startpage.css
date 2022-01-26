@@ -1,0 +1,29 @@
+#hud {
+  /* display: none; */
+}
+
+#question h2 {
+  display: flex;
+  justify-items: center;
+}
+
+#answers ul li {
+  justify-content: center;
+  font-size: 200%;
+}
+
+#option1 {
+  background-color: var(--bgButton);
+  /* background-image: url(../images/scanlines.jpg); */
+  transition:ease-in;
+  transition: 0.5s;
+}
+
+#option1:hover {
+  background-image: url(../images/scanlines.jpg);
+  color: black;
+}
+
+#option2, #option3, #option4 {
+  background-color: var(--bgGreen);
+}

@@ -33,7 +33,7 @@ header {
 	display: flex;
 	justify-content: center;
 	width: 90%;
-	height: 10%;
+	height: 05%;
 	justify-content: center;
 	padding: 30px;
 	font-family: computer_7, Courier, monospace;
@@ -76,7 +76,7 @@ a:visited {
 #hud {
 	display: flex;
 	flex-direction: row;
-	height: 10%;
+	height: 15%;
 	background-color: inherit;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -107,8 +107,8 @@ a:visited {
 }
 
 #progress-meter {
-	justify-content: center;
-	width: 80%;
+	justify-content:right;
+	width: 90%;
 	height: 3rem;
 	border: 0.2rem solid var(--textGreen);
 	border-radius: 50px;
@@ -126,62 +126,112 @@ a:visited {
 	flex-direction: column;
 	width: 30%;
 	align-items: stretch;
-	justify-content: center;
+	justify-content:end;
 	background-color: black;
 	font-family: alarmclock, Courier, monospace;
 	color: var(--alarmred);
+	border: 4px solid black;
 }
 
 #hud-timer p {
 	color: var(--alarmred);
-	margin: 0px 35%;
+	/* margin: 0px 35%; */
 	text-align: center;
-	font-size: 135%;
+	font-size: 200%;
+}
+
+#timer-controls {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	height: 30%;
+	/* background-color: red; */
+	margin: 0;
+	border: 4px solid black;
+}
+
+.timer-btn {
+	background-color: var(--bgGreen);
+	width: 50%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.timer-btn:hover {
+	background-color: var(--bgButtonHover);
+}
+
+#start-reset-btn {
+	background-image: url(../images/timergreen.png);
+	border-right: 2px dashed black;
+}
+
+#stop-btn {
+	background-image: url(../images/timerred.png);
+	border-left: 2px dashed black;
 }
 
 #hud-hiscore {
-	background-color: var(--bgButton);
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content:end;
+	background-color: var(--bgGreen);
 	width: 20%;
+	border: 4px solid black;
+}
+
+#hiscore-logo {
+	height: 70%;
+	background-color: darkgrey;
 	background-image: url(../images/leaderboard.png);
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
-
+	border-bottom: 4x black;
 }
 
-#hud-hiscore:hover {
+#hiscore-logo:hover {
 	background-color: grey;
 	background-image: url(../images/leaderboardwithcolors2.png);
 }
 
-#hud-hiscore-clr {
-	background-color: var(--bgbutton);
-	width: 40%;
-	justify-content: center;
-	align-content: center;
-	text-align: center;
-	text-justify: center;
-}
-
-#hud-hiscore-clr h3 {
-	text-align: center;
-	text-justify: center;
-}
-
-#hud-hiscore-clr:hover {
-	background-color: var(--bgButtonHover);
-}
-
-#hud-hiscore-left {
-	background-color: inherit;
-	width: 40%;
-}
-
-#scores-box {
+#hiscore-controls {
 	display: flex;
-	flex-direction: column;
-	height: 80%;
+	flex-direction: row;
 	justify-content: space-evenly;
+	height: 30%;
+	background-color: red;
+	margin: 0;
+}
+
+.hiscore-btn {
+	background-color: var(--bgGreen);
+	width: 50%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#see-hiscores {
+	background-image: url(../images/eyeneutral.png);
+	border-right: 2px dashed black;
+}
+
+#see-hiscores:hover {
+	background-color: var(--bgButtonHover);
+	background-image: url(../images/eyehover.png);
+}
+
+#clear-hiscores {
+	background-image: url(../images/delete.png);
+	border-left: 2px dashed black;
+}
+
+#clear-hiscores:hover {
+	background-color: var(--bgButtonHover);
+	background-image: url(../images/deletehover.png);
 }
 
 #question {
@@ -225,39 +275,6 @@ a:visited {
 	background-color: var(--bgButtonHover);
 }
 
-#scores-box {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 65%;
-	background-color: inherit;
-	width: 40%;
-	justify-self: center;
-	align-self: center;
-}
-
-#scores-box li {
-	align-items: center;
-	justify-content: left;
-	text-indent: 15px;
-	background-color: var(--bgButton);
-	margin: 5px 20px 5px 20px;
-	border-radius: 10px;
-}
-
-#scores-box ol {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-content: space-around;
-	width: 100%;
-	height: 100%;
-}
-
-#scores-box ol li {
-	display: flex;
-}
-
 .answer-button {
 	height: 22%;
 	align-items: center;
@@ -266,4 +283,50 @@ a:visited {
 	background-color: var(--bgButton);
 	margin: 10px 50px 10px 70px;
 	border-radius: 15px;
+}
+
+#scores-box .hiscoreline {
+	height: 20%;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 767px) {
+
+	#hud {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		height: 20%;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	
+	#hud-progress {
+		/* /* flex-basis: 767px; THIS DOES WORK  */
+		height: 40%;
+		width: 100%;
+	}
+
+	#hud-timer {
+		height: 60%;
+		width: auto;
+		flex: 1 1 100px;
+	}
+
+	#hud-hiscore {
+		height: 60%;
+		width: auto;
+		flex: 1 1 100px;
+	}
+
+	.answer-button {
+		margin: 10px 20px;
+	}
+
+	#scores-box {
+		width: 80%;
+		height: 50%;
+		margin-top: 40px;
+	}
 }
