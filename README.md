@@ -1,5 +1,5 @@
-# 04-Homework
-Code Quiz
+# Code Quiz
+Link to the Quiz:  https://patrickfham.github.io/CodeQuiz 
 
 ## Approach
 An unbelievable amount of work went into this.  I know of some who are just copying and pasting code, making it work, and hoping they can understand what it does.  I can't do that.  I do realize not all of my coding is efficient (yet, I'm learning), but it's ALL MINE.  I'm glad to sit and explain why I did each of those things, and how I could've done them differently.
